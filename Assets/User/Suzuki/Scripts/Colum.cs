@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Colum : MonoBehaviour
 {
-    Piece piece;
+    public Piece piece;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,13 +17,14 @@ public class Colum : MonoBehaviour
         
     }
 
-    void SetPiece(Piece piece)
+    void SetPiece(Piece pce)
     {
-
+        piece = pce;
     }
 
-    void OnTriggerEnter(Collider trigger)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-
+        GameObject obj = GameObject.Find(collider.gameObject.name);
+        SetPiece(obj.GetComponent<Piece>());
     }
 }
