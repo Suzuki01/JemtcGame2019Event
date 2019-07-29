@@ -14,6 +14,19 @@ public class AnswerColum : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GetColums();
+    }
+
+    public List<Colum> GetColums()
+    {
+        Colum[] colums = GetComponents<Colum>();
+        Debug.Log(colums);
+
+        return null;
+    }
+
+    void SetColum(int columNum)
+    {
+        ColumIndex[columNum] = GetComponentInChildren<Colum>();
     }
 }
