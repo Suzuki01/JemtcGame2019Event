@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnswerColum : MonoBehaviour
 {
-    List<Colum> ColumIndex;
+    public List<Colum> ColumIndex;
     // Start is called before the first frame update
     void Start()
     {
