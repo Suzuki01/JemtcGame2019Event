@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
 [System.Serializable]
 public class Question : GameSystem
 {
@@ -15,7 +17,9 @@ public class Question : GameSystem
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetAnswer(answer.Count);
+        answerColum.GetComponent<AnswerColum>().SetColum(answer.Count);
+        PieceGenerate(0);
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class Question : GameSystem
 
             if (answer[i].String != answerColum.ColumIndex[i].piece.String)
                 break;
+
             else if (i == pieceIndex - 1)
             {
                 IsAnswer = true;
@@ -47,11 +52,27 @@ public class Question : GameSystem
 
     void SetAnswer(int key)
     {
-
+        GameObject prefab = (GameObject)Resources.Load("AnswerColum");
+        GameObject obj = Instantiate(prefab, new Vector3(0,0,0),Quaternion.identity);
+        answerColum = obj.GetComponent<AnswerColum>();
     }
 
     void PieceGenerate(int num)
     {
+        for(int i = 0; i < OtherPiece.Count; i++)
+        {
+            GameObject prefab = (GameObject)Resources.Load("Piece");
+            GameObject obj = Instantiate(prefab, new Vector3(i + i, i + i, 0), Quaternion.identity);
+            Piece piece = obj.GetComponent<Piece>();
+            piece.String = OtherPiece[i].String;
+        }
 
+        for (int i = 0; i < answer.Count; i++)
+        {
+            GameObject prefab = (GameObject)Resources.Load("Piece");
+            GameObject obj = Instantiate(prefab, new Vector3(i + i, i + i, 0), Quaternion.identity);
+            Piece piece = obj.GetComponent<Piece>();
+            piece.String = answer[i].String;
+        }
     }
 }

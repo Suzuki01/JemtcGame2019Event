@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnswerColum : MonoBehaviour
+public class AnswerColum : Question
 {
     public List<Colum> ColumIndex;
     // Start is called before the first frame update
@@ -25,8 +25,13 @@ public class AnswerColum : MonoBehaviour
         return null;
     }
 
-    void SetColum(int columNum)
+    public void SetColum(int columNum)
     {
-        ColumIndex[columNum] = GetComponentInChildren<Colum>();
+        GameObject prefab = (GameObject)Resources.Load("Colum");
+        for (int i = 0; i < columNum; i++)
+        {
+            GameObject obj = Instantiate(prefab, new Vector3(i + 1, 0, 0), Quaternion.identity);
+            ColumIndex.Add(obj.GetComponent<Colum>());
+        }
     }
 }
