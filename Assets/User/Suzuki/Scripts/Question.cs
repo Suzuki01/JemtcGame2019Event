@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Question : MonoBehaviour
+public class Question : GameSystem
 {
     public Sprite image;
     public List<Piece> answer;
@@ -39,9 +39,9 @@ public class Question : MonoBehaviour
 
         if (IsAnswer)
         {
-            //カウントアップの関数を呼ぶ
+            AnswerCountUp();
             IsAnswer = false;
-            Debug.Log("正解!!!!!");
+            
         }
     }
 
