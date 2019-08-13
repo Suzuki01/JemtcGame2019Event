@@ -18,8 +18,9 @@ public class GameSystem : MonoBehaviour
         
     }
 
-    void AnswerCountUp()
+    public void AnswerCountUp()
     {
-
+        answerCounter++;
+        Debug.Log(answerCounter);
     }
 }
