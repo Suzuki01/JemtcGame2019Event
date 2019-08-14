@@ -24,7 +24,13 @@ public class Colum : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        GameObject obj = GameObject.Find(collider.gameObject.name);
+        //↓これはActiveなSceneから同名のGameObjectを参照するはず、この場合一番最初に見つかった同名のGameObjectが返るはず
+        //  Piece(clone)など同名のGameObjectが複数存在するから適さない。
+        //GameObject obj = GameObject.Find(collider.gameObject.name);
+
+        //↓ColliderのGameObjectへアクセスするならこっち。
+        //  基本、ComponentからGameObjectへの参照は簡単にできるよ
+        GameObject obj = collider.gameObject;
         SetPiece(obj.GetComponent<Piece>());
         Debug.Log(obj.GetComponent<Piece>().String);
     }
